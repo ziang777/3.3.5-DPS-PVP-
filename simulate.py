@@ -10,18 +10,18 @@ while i <= 10000:
 
     cdAimed, cdArcane, cdChimeara, cdSting1, cdSting2, cdAuto, cdTranquilizing, cdConcussive, cdScatter, cdFreezing, \
     cdSnake, cdDeterrence, cdDisengage, cdFeignDeath, cdShadowmeld = 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,\
-                                                                     0.0, 0.0, 0.0, 0.0, 0.0
+                                                                     0.0, 0.0, 0.0, 0.0, 0.0  # CD监控
 
     dmgChimeara, dmgAimed, dmgArcane, dmgStedy, dmgSting, dmgAuto, \
     dmgSilencing, dmgWildQuiver, dmgPiercingCh, \
-    dmgPiercingAi, dmgPiercingSt, dmgChimearaSerpent = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    dmgPiercingAi, dmgPiercingSt, dmgChimearaSerpent = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  # 单次技能伤害
 
     # tChimeara, tAimed, tArcane= -7, -3.5, 0   # 上一次施放的时间点，初始归零
     tChimeara, tAimed, tArcane, tTranquilizing, tConcussive, tScatter, tFreezing, tSnake, tDeterrence, tDisengage, \
     tFeignDeath, tShadowmeld = -7, -3.5, 0, -6, -12, -30, -30, -25, -60, -20, -25, -120  # 上一次施放的时间点，初始归零
 
     SumDmg, dmg1, dmg2, dmg3, dmg4, dmg5, dmg6, dmg7, dmg8, dmg9, dmg10, \
-    dmg11, dmg12 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    dmg11, dmg12 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  # 伤害统计汇总
 
     nChimeara, nAimed, nArcane, nSteady, nSting0, nSting, nAuto0, nAuto, nSilencing, nWildQuiver,nTranquilizing, \
     nConcussive, nScatter, nFreezing, nSnake, nDeterrence, nDisengage, \
@@ -194,7 +194,7 @@ while i <= 10000:
                 dmgChimearaSerpent = (Ap * 0.112 + 677.6) * 1.05 * 1.05 * 1.05 * (1 - kxms) * (1 - rxms / 100)
                 dmgPiercingCh = 0
             tChimeara += cdChimeara  # 施放后重置CD
-            # print ("ChimearaShot damage is {0},{1}".format(dmgChimeara, cdChimeara))
+            # print ("奇美拉伤害 {0},{1}".format(dmgChimeara, cdChimeara))
             t0 = t0 + 1.5
             # print ("战斗时间：{}s".format(t0))
             dmg1 = dmgChimeara + dmg1  # 奇美拉射击总伤害
@@ -212,7 +212,7 @@ while i <= 10000:
                         1 - hjms) * (1 - rxms / 100)
                 dmgPiercingAi = 0
             tAimed += cdAimed
-            # print ("AimedShot damage is {0},{1}".format(dmgAimed, cdAimed))
+            # print ("瞄准射击伤害 {0},{1}".format(dmgAimed, cdAimed))
             t0 = t0 + 1.5
             # print ("战斗时间：{}s".format(t0))
             dmg2 = dmg2 + dmgAimed
@@ -225,7 +225,7 @@ while i <= 10000:
             else:
                 dmgArcane = (Ap * 0.15 + 492) * 1.05 * 1.05 * 1.05 * (1 - kxms) * (1 - rxms / 100)
             tArcane += cdArcane
-            # print ("ArcaneShot damage is {0},{1}".format(dmgArcane, cdArcane))
+            # print ("奥术射击伤害 {0},{1}".format(dmgArcane, cdArcane))
             t0 = t0 + 1.5
             # print ("战斗时间：{}s".format(t0))
             dmg3 = dmg3 + dmgArcane
@@ -288,7 +288,7 @@ while i <= 10000:
                     dmgStedy = ((BowDps + ArrowDps) * 2.8 + Ap * 0.1 + 252) * 1.05 * 1.05 * 1.05 * (1 - hjms) * (
                             1 - rxms / 100)
                     dmgPiercingSt = 0
-                # print ("StedyShot damage is {0}".format(dmgStedy))
+                # print ("稳固射击伤害 {0}".format(dmgStedy))
                 t0 = t0 + 1.5
                 # print ("战斗时间：{}s".format(t0))
             else:
@@ -300,7 +300,7 @@ while i <= 10000:
                     dmgStedy = ((BowDps + ArrowDps) * 2.8 + Ap * 0.1 + 252) * 1.05 * 1.05 * 1.05 * (1 - hjms) * (
                             1 - rxms / 100)
                     dmgPiercingSt = 0
-                # print ("StedyShot damage is {0}".format(dmgStedy))
+                # print ("稳固射击伤害  {0}".format(dmgStedy))
                 t0 = t0 + 2 / 1.15
                 # print ("战斗时间：{}s".format(t0))
             dmg4 = dmg4 + dmgStedy
